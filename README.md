@@ -4,7 +4,7 @@ Preliminary experiments on the public Delphi-2M release (Shmatko et al., Nature 
 
 ## Notebooks
 
-### `5685_semantic_init.ipynb` — Semantic embedding initialisation
+### `5685_semantic_init.ipynb`: Semantic embedding initialisation
 
 Does initialising Delphi-2M's token embeddings from PubMedBERT descriptions of the ICD-10 codes improve held-out negative log-likelihood?
 
@@ -14,7 +14,7 @@ Result: semantic initialisation does not reduce held-out negative log-likelihood
 
 Outputs: `stratified_loss.csv`, `tying_interaction.csv`, `run_summary.json` (written to Drive by the notebook).
 
-### `5686_plausibility_audit.ipynb` — Clinical plausibility audit
+### `5686_plausibility_audit.ipynb`: Clinical plausibility audit
 
 How often does a generative trajectory model produce sequences that are clinically implausible, and how much of that lies beyond enumerable rules?
 
