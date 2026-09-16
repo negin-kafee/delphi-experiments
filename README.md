@@ -1,6 +1,6 @@
 # delphi-experiments
 
-Preliminary experiments on the public Delphi-2M release (Shmatko et al., Nature 2025), run on the synthetic demo data that ships with the repository. Both notebooks run on Google Colab against a fork of the Delphi codebase at `negin-kafee/Delphi`.
+Preliminary experiments on the public Delphi code release (Shmatko et al., Nature 2025). The trained Delphi-2M weights are distributed only through UK Biobank, so both notebooks use the demo model trained on the synthetic data that ships with the repository. The authors state that model is for code testing only; the results here characterise the pipelines, not Delphi-2M itself. Both notebooks run on Google Colab against a fork of the Delphi codebase at `negin-kafee/Delphi`.
 
 ## Notebooks
 
@@ -18,7 +18,7 @@ Outputs: `stratified_loss.csv`, `tying_interaction.csv`, `run_summary.json` (wri
 
 How often does a generative trajectory model produce sequences that are clinically implausible, and how much of that lies beyond enumerable rules?
 
-Pipeline: sample 2,500 female-conditioned trajectories from the public checkpoint; screen with a rule detector (sex-specific codes, events after death, perinatal codes at adult ages); judge all rule-flagged plus 83 random rule-clean trajectories with an LLM under a four-class rubric (biological, temporal, comorbidity, demographic); manually adjudicate judge-only flags; re-judge those with a stronger model.
+Pipeline: sample 2,500 female-conditioned trajectories from the demo checkpoint; screen with a rule detector (sex-specific codes, events after death, perinatal codes at adult ages); judge all rule-flagged plus 83 random rule-clean trajectories with an LLM under a four-class rubric (biological, temporal, comorbidity, demographic); manually adjudicate judge-only flags; re-judge those with a stronger model.
 
 Result: rules flag 66 of 2,500 (2.64%). Of 149 judged, the LLM recovers 64 of 66 rule flags and flags 7 of 83 rule-clean trajectories. Manual adjudication finds 2 of those 7 defensible (obstetric codes at age 81); three of the remaining five are rare but possible female reproductive events called impossible, a demographic bias in the judge that survived a rubric warning against it. A stronger judge upholds 3 of 7.
 
@@ -26,7 +26,7 @@ Outputs: `llm_judgements.csv`, `to_review.csv`, `strong_judgements.csv` (written
 
 ## Running
 
-Both notebooks expect the Delphi repository at `/content/Delphi` and, for 5686, the public checkpoint at `Delphi-2M/ckpt.pt`. The LLM judge uses the Gemini API; the key is requested interactively and never stored.
+Both notebooks expect the Delphi repository at `/content/Delphi` and, for 5686, a demo checkpoint at `Delphi-2M/ckpt.pt` produced by `train.py config/train_delphi_demo.py`. The LLM judge uses the Gemini API; the key is requested interactively and never stored.
 
 ## Author
 
