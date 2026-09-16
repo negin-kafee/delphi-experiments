@@ -18,11 +18,11 @@ Outputs: `stratified_loss.csv`, `tying_interaction.csv`, `run_summary.json` (wri
 
 How often does a generative trajectory model produce sequences that are clinically implausible, and how much of that lies beyond enumerable rules?
 
-Pipeline: sample 2,500 female-conditioned trajectories from the public checkpoint; screen with a rule detector (sex-specific codes, events after death, perinatal codes at adult ages); judge a stratified set of 150 with an LLM under a four-class rubric (biological, temporal, comorbidity, demographic); manually adjudicate judge-only flags; re-judge those with a stronger model.
+Pipeline: sample 2,500 female-conditioned trajectories from the public checkpoint; screen with a rule detector (sex-specific codes, events after death, perinatal codes at adult ages); judge all rule-flagged plus 83 random rule-clean trajectories with an LLM under a four-class rubric (biological, temporal, comorbidity, demographic); manually adjudicate judge-only flags; re-judge those with a stronger model.
 
-Result: rules flag 67 of 2,500 (2.68%). Of 150 judged, the LLM recovers 66 of 67 rule flags and flags 33 of 83 rule-clean trajectories. Adjudication finds 7 of those 33 defensible. The errors cluster on ordinary female physiology in female-conditioned trajectories, a demographic bias in the judge itself.
+Result: rules flag 66 of 2,500 (2.64%). Of 149 judged, the LLM recovers 64 of 66 rule flags and flags 7 of 83 rule-clean trajectories. Manual adjudication finds 2 of those 7 defensible (obstetric codes at age 81); three of the remaining five are rare but possible female reproductive events called impossible, a demographic bias in the judge that survived a rubric warning against it. A stronger judge upholds 3 of 7.
 
-Outputs: `llm_judgements.csv`, `to_review.csv`, and the strong-judge results (written by the notebook).
+Outputs: `llm_judgements.csv`, `to_review.csv`, `strong_judgements.csv` (written by the notebook).
 
 ## Running
 
